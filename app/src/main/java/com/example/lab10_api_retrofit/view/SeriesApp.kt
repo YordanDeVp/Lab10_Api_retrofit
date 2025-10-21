@@ -34,8 +34,6 @@ import androidx.navigation.navArgument
 import com.example.lab10_api_retrofit.data.SerieApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.*
 
 @Composable
 fun SeriesApp() {

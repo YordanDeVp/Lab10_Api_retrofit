@@ -37,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun SeriesApp() {
-    val urlBase = "http://10.0.2.2:8000/" // o tu IP si usarás un dispositivo externo
+    val urlBase = "http://10.0.2.2:8000/serie/"
     val retrofit = Retrofit.Builder().baseUrl(urlBase)
         .addConverterFactory(GsonConverterFactory.create()).build()
     val servicio = retrofit.create(SerieApiService::class.java)
@@ -122,7 +122,7 @@ fun Contenido(
             navController = navController,
             startDestination = "inicio" // Ruta de inicio
         ) {
-            composable("inicio") { ScreenInicio() }
+            composable("inicio") { ScreenInicio(navController) } 
             composable("series") { ContenidoSeriesListado(navController, servicio) }
             composable("serieNuevo") {
                 ContenidoSerieEditar(navController, servicio, 0 )
@@ -142,6 +142,37 @@ fun Contenido(
 }
 
 @Composable
-fun ScreenInicio() {
-    TODO("Not yet implemented")
+fun ScreenInicio(navController: NavHostController) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        contentAlignment = androidx.compose.ui.Alignment.Center
+    ) {
+        androidx.compose.foundation.layout.Column(
+            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Bienvenido a Series y mas Seriees",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Text(
+                text = "Administra tus series favoritas fácilmente.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.Gray,
+                modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
+            )
+
+            FloatingActionButton(
+                onClick = { navController.navigate("series") },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = Color.White
+            ) {
+                Icon(Icons.Outlined.Favorite, contentDescription = "Ir a series")
+            }
+        }
+    }
 }

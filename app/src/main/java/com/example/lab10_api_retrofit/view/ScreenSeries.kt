@@ -34,7 +34,6 @@ import androidx.compose.runtime.mutableStateOf
 import kotlinx.coroutines.delay
 
 
-
 @Composable
 fun ContenidoSeriesListado(navController: NavHostController, servicio: SerieApiService) {
     var listaSeries: SnapshotStateList<SerieModel> = remember { mutableStateListOf() }
@@ -181,7 +180,6 @@ fun ContenidoSerieEditar(navController: NavHostController, servicio: SerieApiSer
     }
 }
 
-
 @Composable
 fun ContenidoSerieEliminar(navController: NavHostController, servicio: SerieApiService, id: Int) {
     var showDialog by remember { mutableStateOf(true) }
@@ -218,6 +216,3 @@ fun ContenidoSerieEliminar(navController: NavHostController, servicio: SerieApiS
         }
     }
 }
-
-
-
